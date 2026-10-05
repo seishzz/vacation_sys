@@ -1,0 +1,29 @@
+@startuml Учёт_отпусков_сотрудников
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Пользователь(Сотрудник)" as User
+actor "Администратор(Кадровик)" as Admin
+
+
+rectangle "ИС <Учёт отпусков сотрудников>" {
+    usecase "Авторизация в системе(как сотрудник)" as UC_UsAuth
+    usecase "Авторизация в системе(как администратор)" as UC_AdmAuth
+    usecase "Заполнение заявления на отпуск" as UC_apfl
+    usecase "Отслеживание начала и конца отпуска" as UC_Track
+    usecase "Отслеживание статуса заявления" as UC_Status
+    usecase "Составление графика отпусков" as UC_Graph
+    usecase "Выплата отпускных сотрудникам" as UC_Payment
+    usecase "Просмотр истории отпусков сотрудников" as UC_History
+
+User --> UC_UsAuth
+UC_UsAuth --> UC_apfl
+UC_UsAuth --> UC_Track
+UC_UsAuth --> UC_Status
+
+Admin --> UC_AdmAuth
+UC_AdmAuth --> UC_Graph
+UC_AdmAuth --> UC_Payment
+UC_AdmAuth --> UC_History
+}
+@enduml
